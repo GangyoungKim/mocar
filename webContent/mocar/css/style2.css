@@ -1,0 +1,72 @@
+
+.car_name{
+	font-size: 14px;
+    font-weight: normal;
+    line-height: 1.33;
+    color: #242b34;
+}
+.car_year{
+	color: #6c757d;
+    font-size: 12px;
+    line-height: 1.33;
+}
+.car_price_sub{
+    color: #adb5bd;
+   	font-size: 12px;
+   	line-height: 1.33;
+}
+
+
+ul{
+	justify-content: center;
+}
+.page-link {
+  color: #000!important; 
+  background-color: #fff!important;
+  border: 1px solid #ccc!important; 
+}
+
+.page-item.active .page-link {
+ z-index: 1!important;
+ color: #555!important;
+ font-weight:bold!important;
+ background-color: #f1f1f1!important;
+ border-color: #ccc!important;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: #000!important;
+  background-color: #fafafa!important; 
+  border-color: #ccc!important;
+}
+nav{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+section{
+	width: 70%;
+}
+
+
+input#demo{
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	height: 42px;
+	text-align: center;
+	padding-left: auto;
+	padding-right: 0;
+	background: transparent 
+	url("https://cdn1.iconfinder.com/data/icons/office-322/24/time-date-schedule-event-calendar-appointment-256.png") 5%
+	50%/30px 30px no-repeat;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+
+	<!-- id 중복체크 -->
+	<select id="checkId" parameterType="string" resultType="_int">
+		SELECT count(*) FROM mocar_join WHERE USERID = #{userid}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="userdto">
+		INSERT INTO mocar_join VALUES (#{userid}, #{userpw}, #{username}, #{userbirth}, #{usermail}, #{usermember})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="hashmap" resultType="_int">
+		SELECT count(*) FROM mocar_join WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
+	
+	<!-- 마이페이지 로그인 된 유저 이름 불러오기 -->
+	<select id="login_name" parameterType="hashmap" resultType="String">
+		SELECT username FROM mocar_join WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="loginid" parameterType="hashmap" resultType="String">
+		SELECT userid FROM mocar_join WHERE USERNAME = #{username} AND USERMAIL = #{usermail}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="loginpw" parameterType="hashmap" resultType="string">
+		SELECT userpw FROM mocar_join WHERE USERNAME = #{username} AND USERID = #{userid} AND USERMAIL = #{usermail}
+	</select>
+	
+	<!-- 회원정보 받아오기 -->
+	<select id = "user_info" parameterType="hashmap" resultType="userdto">
+		SELECT * FROM mocar_join WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
+	
+	<!-- 기존 비밀번호 확인 -->
+	<select id = "curpw" parameterType ="hashmap" resultType="_int">
+		SELECT count(userpw) FROM mocar_join WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
+	<!-- 새 비밀번호 업데이트 -->
+	<update id="new_pw" parameterType="hashmap">
+		UPDATE mocar_join SET userpw = #{new_pw} WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</update>
+	<!-- 회원 탈퇴 -->
+	<delete id = "deleteId" parameterType="string">
+      DELETE FROM mocar_join WHERE USERID = #{userid}
+   </delete>
+	<!-- coupon -->
+	<select id="coupon" parameterType="hashmap" resultType="userdto">
+		SELECT * FROM mc_coupon WHERE couponnum = #{couponnum}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

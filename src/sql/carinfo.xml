@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Carinfo">
+
+	<select id="getCarinfoList" resultType="carinfodto" parameterType="hashmap">
+		SELECT *
+		FROM (
+			SELECT rownum R, C.*
+			FROM (SELECT * FROM MOCAR_CARINFO ORDER BY carnum DESC) C
+			) B
+		WHERE B.R BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<select id="getCarFromCarType" resultType="carinfodto">
+		SELECT * FROM MOCAR_CARINFO WHERE cartype = #{cartype} ORDER BY carnum DESC
+	</select>
+
+	<select id="getCarinfoCnt" resultType="_int">
+		SELECT COUNT(*) FROM MOCAR_CARINFO
+	</select>
+	
+	<select id="getDetail" parameterType="_int" resultType="carinfodto">
+		SELECT * FROM MOCAR_CARINFO WHERE carnum = #{carnum}
+	</select>
+	
+	<insert id="getCarRent" parameterType="carrentdto">
+		INSERT INTO MOCAR_CARRENT VALUES (#{rentUUID}, #{rentstartday}, #{rentendday}, #{carnum})
+	</insert>
+	
+	<select id="getRentNum" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(CARNUM)  FROM MOCAR_CARRENT
+		WHERE rentstartday BETWEEN TO_DATE(#{rentstartday}, 'YYYY-MM-DD') 
+        AND TO_DATE(#{rentendday}, 'YYYY-MM-DD') AND CARNUM = #{carnum}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
